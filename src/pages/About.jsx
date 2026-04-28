@@ -1,23 +1,7 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { Target, Eye, Heart } from 'lucide-react';
 import "../style/home.css";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 60, damping: 15 },
-  },
-};
 
 const About = () => {
   // Ensure the page loads at the top
@@ -26,68 +10,110 @@ const About = () => {
   }, []);
 
   return (
-    <main className="home-container" style={{ paddingTop: "140px", paddingBottom: "100px" }}>
+    <main className="min-h-screen bg-[#0A0B0A] text-[#E0F0C1] overflow-hidden relative" style={{ paddingTop: "120px", paddingBottom: "100px" }}>
+      {/* Background aesthetics */}
+      <div className="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-[#2ECC71]/10 to-transparent pointer-events-none" />
+      <div className="absolute top-40 right-[-100px] w-[500px] h-[500px] bg-[#2ECC71] rounded-full blur-[150px] opacity-10 pointer-events-none" />
       
-      {/* HERO SECTION */}
-      <section className="future-health-section" style={{ paddingTop: "20px", paddingBottom: "20px" }}>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Header Section */}
         <motion.div 
-          className="section-intro"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          style={{ alignItems: "flex-start", textAlign: "left" }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-24 text-center max-w-4xl mx-auto"
         >
-          <motion.span variants={itemVariants} className="section-kicker" style={{ margin: "0 auto 20px auto", display: "block", textAlign: "center" }}>About Us</motion.span>
-          <motion.h1 variants={itemVariants} className="section-heading-main" style={{ marginBottom: "40px", textAlign: "left" }}>
-            Welcome to Kyeal.in – A <span className="gradient-text">Smarter</span> Approach to Wellness
-          </motion.h1>
+          <span className="inline-block py-1.5 px-4 rounded-full bg-[#2ECC71]/10 border border-[#2ECC71]/30 text-[#2ECC71] text-xs font-bold tracking-widest uppercase mb-6">
+            Our Story
+          </span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 font-serif text-white">
+            Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#2ECC71]">Kyeal.in</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-[#94A3B8] leading-relaxed">
+            A smarter approach to wellness, redefining the standard of care through the power of advanced genetics and nutritional science.
+          </p>
+        </motion.div>
 
-          <motion.div variants={itemVariants} style={{ maxWidth: "1000px", fontSize: "18px", lineHeight: "1.8", textAlign: "left", color: "var(--text-dim)" }}>
-            <p style={{ marginBottom: "15px" }}>
-              At <strong style={{ color: "#FFF" }}>Kyeal</strong>, we’re redefining wellness through the power of advanced genetics and nutritional science. Based at the Kannur University Incubation Centre in Kerala, we specialize in transforming your DNA insights into simple, actionable plans for healthier living.
+        {/* Story Section */}
+        <div className="mb-32 max-w-4xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6 text-[#94A3B8] text-lg leading-relaxed text-left"
+          >
+            <p>
+              At <strong className="text-white">Kyeal</strong>, we specialize in transforming your DNA insights into simple, actionable plans for healthier living. Based at the Kannur University Incubation Centre in Kerala, our foundation is built on scientific rigor and personalized care.
             </p>
-            <p style={{ marginBottom: "15px" }}>
-              As a venture of <strong style={{ color: "#FFF" }}>Abizen Nutrition Private Limited</strong>, our expert team blends cutting-edge research with a personalized approach to wellness. We offer DNA-based nutrition guidance, lifestyle programs, and custom-tailored supplements designed for both individuals and organizations.
+            <p>
+              As a venture of <strong className="text-white">Abizen Nutrition Private Limited</strong>, our expert team blends cutting edge research with a tailored approach to wellness. We offer DNA based nutrition guidance, lifestyle programs, and custom supplements designed for both individuals and organizations.
             </p>
-            <p style={{ marginBottom: "50px" }}>
-              Whether you're looking to optimize your personal health or elevate your team's wellbeing, Kyeal provides science-backed advice and continuous support — always rooted in empathy, innovation, and scientific excellence.
-            </p>
-
-            <h2 className="about-subheading">Our Mission</h2>
-            <p style={{ marginBottom: "15px" }}>
-              To make health and wellness truly personal by harnessing the power of DNA science and nutritional expertise.
-            </p>
-            <p style={{ marginBottom: "50px" }}>
-              We deliver actionable, evidence-based programs that empower individuals and organizations to make informed, sustainable lifestyle choices. By bridging the gap between advanced genetic research and everyday wellness, our mission is to redefine health—making it accessible, achievable, and deeply personal.
-            </p>
-
-            <h2 className="about-subheading">Our Vision</h2>
-            <p style={{ marginBottom: "15px" }}>
-              To become India’s most trusted provider of DNA-powered nutrition and lifestyle solutions.
-            </p>
-            <p style={{ marginBottom: "50px" }}>
-              We aim to lead the way in precision health and preventive care, setting new standards in wellness through innovation, research, and strategic partnerships. Our vision is a world where personalized wellbeing is not just a possibility—but a guaranteed reality for all.
-            </p>
-
-            <h2 className="about-subheading">Our Philosophy</h2>
-            <p style={{ marginBottom: "15px" }}>
-              At Kyeal, we believe true wellness begins with understanding who you are—down to your DNA.
-            </p>
-            <p style={{ marginBottom: "15px" }}>
-              Your genetic code is unique, and your path to health should be too. That’s why we combine advanced genetic testing, nutritional science, and deep empathy to create personalized wellness solutions that work.
-            </p>
-            <p style={{ marginBottom: "15px" }}>
-              We go beyond treating symptoms. We focus on people.
-            </p>
-            <p style={{ marginBottom: "30px" }}>
-              Grounded in <strong style={{ color: "#FFF" }}>integrity</strong>, driven by <strong style={{ color: "#FFF" }}>innovation</strong>, and committed to <strong style={{ color: "#FFF" }}>respecting each individual's journey</strong>, we make wellbeing transformative and attainable. With Kyeal, wellness is no longer a one-size-fits-all concept—it’s a custom-designed journey toward your full health potential.
+            <p>
+              Whether you're optimizing personal health or elevating your team's wellbeing, Kyeal provides science-backed advice rooted in empathy, innovation, and absolute scientific excellence.
             </p>
           </motion.div>
-        </motion.div>
-      </section>
+        </div>
 
+        {/* Mission, Vision, Philosophy Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Mission */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="p-8 rounded-3xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-500 group"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-[#2ECC71]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+              <Target size={28} className="text-[#2ECC71]" />
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-4 font-serif">Our Mission</h3>
+            <p className="text-[#94A3B8] leading-relaxed">
+              To make health and wellness truly personal by harnessing the power of DNA science and nutritional expertise. We deliver actionable, evidence based programs that empower individuals to make informed, sustainable choices.
+            </p>
+          </motion.div>
+
+          {/* Vision */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="p-8 rounded-3xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-500 group"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-[#2ECC71]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+              <Eye size={28} className="text-[#2ECC71]" />
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-4 font-serif">Our Vision</h3>
+            <p className="text-[#94A3B8] leading-relaxed">
+              To become India's most trusted provider of DNA powered nutrition and lifestyle solutions. We aim to lead the way in precision health, ensuring personalized wellbeing is a guaranteed reality for all.
+            </p>
+          </motion.div>
+
+          {/* Philosophy */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="p-8 rounded-3xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-500 group"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-[#2ECC71]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+              <Heart size={28} className="text-[#2ECC71]" />
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-4 font-serif">Our Philosophy</h3>
+            <p className="text-[#94A3B8] leading-relaxed">
+              We go beyond treating symptoms. We focus on people. Grounded in integrity and driven by innovation, we combine advanced genetic testing with deep empathy to create personalized wellness solutions that work.
+            </p>
+          </motion.div>
+        </div>
+
+      </div>
     </main>
   );
 };
 
 export default About;
+

@@ -81,33 +81,44 @@ const Home = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
+  const pillarVariants = {
+    hidden: { opacity: 0, rotateY: -90, scale: 0.8, x: 50 },
+    visible: { 
+      opacity: 1, 
+      rotateY: 0, 
+      scale: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 60, damping: 15, duration: 0.8 } 
+    },
+  };
+
   const pillars = [
     { no: "01", title: "Mental Health", desc: "Neurological genetics shape your stress response, mood regulation, and cognitive function. Your DNA reveals what your brain needs to thrive.", icon: <Brain size={24} /> },
-    { no: "02", title: "Physical Fitness", desc: "Muscle fibre profile, VO₂ ceiling, recovery rate — precision training prescriptions written in your genes. Not guesswork.", icon: <Zap size={24} /> },
-    { no: "03", title: "Nutrition & Diet", desc: "Food as medicine — daily meals and targeted supplements tuned to how your body absorbs nutrients at the genetic level. Delivered to your door.", icon: <Utensils size={24} /> },
-    { no: "04", title: "Preventive Health", desc: "Genetic flags for cancer, diabetes, cardiovascular disease — identified and intercepted before they become diagnoses. 18+ cancer-linked markers tracked.", icon: <ShieldCheck size={24} /> },
+    { no: "02", title: "Physical Fitness", desc: "Muscle fibre profile, VO₂ ceiling, recovery rate  precision training prescriptions written in your genes. Not guesswork.", icon: <Zap size={24} /> },
+    { no: "03", title: "Nutrition & Diet", desc: "Food as medicine  daily meals and targeted supplements tuned to how your body absorbs nutrients at the genetic level. Delivered to your door.", icon: <Utensils size={24} /> },
+    { no: "04", title: "Preventive Health", desc: "Genetic flags for cancer, diabetes, cardiovascular disease identified and intercepted before they become diagnoses. 18+ cancer linked markers tracked.", icon: <ShieldCheck size={24} /> },
     { no: "05", title: "Continuous Monitoring", desc: "Quarterly biomarker blood panels, AI health coaching, and annual expert assessments. Your preventive protocol evolves as your biology does.", icon: <LineChart size={24} /> },
   ];
 
   const steps = [
     { no: "01", title: "DNA Blueprint Analysis", desc: "A single test through NABL & CAP-certified labs using Illumina Infinium™ technology across all 5 pillars." },
     { no: "02", title: "4-Expert Consultation Panel", desc: "Your results reviewed by a genetic counsellor, clinical dietitian, psychologist, and certified fitness trainer." },
-    { no: "03", title: "Personalised Meals, Delivered Daily", desc: "DNA-matched meals delivered to your door — portioned, nutrient-aligned, and culturally appropriate." },
+    { no: "03", title: "Personalised Meals, Delivered Daily", desc: "DNA-matched meals delivered to your door  portioned, nutrient-aligned, and culturally appropriate." },
     { no: "04", title: "Targeted Monthly Supplements", desc: "Supplements matched to your exact absorption patterns, metabolic variants, and genetic risk markers." },
-    { no: "05", title: "Annual Precision Health Review", desc: "Quarterly biomarker panels, clinical reviews, and AI monitoring. One DNA test — a lifelong protocol." },
+    { no: "05", title: "Annual Precision Health Review", desc: "Quarterly biomarker panels, clinical reviews, and AI monitoring. One DNA test  a lifelong protocol." },
   ];
 
   const discoveries = [
-    { title: "Anti-Inflammatory Prevention", desc: "Inflammation is optional when you know your genetic triggers. Turmeric, walnuts, omega-3s — targeted to silence risk markers before they activate." },
-    { title: "Cancer Risk Interception", desc: "18 cancer-linked genetic markers — identified, tracked, and countered with targeted nutritional interventions." },
-    { title: "Metabolism Decoded", desc: "PPARG variants, B12 malabsorption, MTHFR pathways — each has a precise dietary answer that only your DNA can reveal." },
-    { title: "Mental Wellness Nutrition", desc: "Serotonin, dopamine, cortisol — all modulated by what you eat. Your DNA reveals which nutritional levers to pull for optimal function." },
+    { title: "Anti-Inflammatory Prevention", desc: "Inflammation is optional when you know your genetic triggers. Turmeric, walnuts, omega-3s targeted to silence risk markers before they activate." },
+    { title: "Cancer Risk Interception", desc: "18 cancer-linked genetic markers  identified, tracked, and countered with targeted nutritional interventions." },
+    { title: "Metabolism Decoded", desc: "PPARG variants, B12 malabsorption, MTHFR pathways  each has a precise dietary answer that only your DNA can reveal." },
+    { title: "Mental Wellness Nutrition", desc: "Serotonin, dopamine, cortisol  all modulated by what you eat. Your DNA reveals which nutritional levers to pull for optimal function." },
   ];
 
   const faqs = [
     { q: "What is DNA-based preventive healthcare?", a: "DNA-based preventive healthcare uses genetic testing to identify disease risks before symptoms appear. Kyeal is India's first company to offer this as a complete system, not just a test." },
     { q: "How much does the Kyeal program cost?", a: "Kyeal's DNA Blueprint starts at ₹20,000. Includes the DNA test, 5-pillar analysis, 4-expert panel, meal delivery, monthly supplements, and annual health review." },
-    { q: "How is Kyeal different from other DNA tests?", a: "Other DNA tests give a PDF report — then stop. Kyeal delivers an ongoing system: daily meals, monthly supplements, quarterly biomarker reviews, and annual reassessment." },
+    { q: "How is Kyeal different from other DNA tests?", a: "Other DNA tests give a PDF report  then stop. Kyeal delivers an ongoing system: daily meals, monthly supplements, quarterly biomarker reviews, and annual reassessment." },
     { q: "Are the labs certified?", a: "Yes. We use Illumina Infinium™ technology through NABL & CAP-certified labs, with research collaboration with Tata Memorial Hospital and MapMyGenome." },
     { q: "Can genetics really prevent cancer?", a: "Kyeal tracks 18+ cancer-linked genetic markers. Early identification of genetic risk combined with targeted nutrition significantly improves the odds of interception." }
   ];
@@ -125,14 +136,14 @@ const Home = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="hero-tag-premium">
-            <span className="pulse-icon"></span> India's First DNA-Based Preventive Healthcare
+            <span className="pulse-icon"></span> India's First DNA Based Preventive Healthcare
           </div>
           <h1 className="hero-title-large">
             You Are What <br />
             <span className="gradient-text">You Eat.</span>
           </h1>
           <p className="hero-subtitle-pro">
-            Your DNA holds the blueprint to preventing disease before it starts. We decode your genetics, then deliver personalised meals, targeted supplements, and a complete 5-pillar wellness protocol built around who you actually are.
+            Your DNA holds the blueprint to preventing disease before it starts. We decode your genetics, then deliver personalised meals, targeted supplements, and a complete 5 pillar wellness protocol built around who you actually are.
           </p>
           <div className="hero-actions-row">
             <motion.button
@@ -154,31 +165,46 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* NEW STATS BAND */}
-      <motion.div 
-        className="stats-band"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={containerVariants}
-      >
-        <motion.div variants={itemVariants} className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
-          <h2>56%</h2>
-          <p>Deaths in India linked to diet-related disease</p>
-        </motion.div>
-        <motion.div variants={itemVariants} className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
-          <h2>101M+</h2>
-          <p>Diabetics in India today</p>
-        </motion.div>
-        <motion.div variants={itemVariants} className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
-          <h2>5 Pillars</h2>
-          <p>Complete preventive wellness system</p>
-        </motion.div>
-        <motion.div variants={itemVariants} className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
-          <h2>80%</h2>
-          <p>Positive outcomes in pilot clients</p>
-        </motion.div>
-      </motion.div>
+      {/* NEW STATS BAND (MARQUEE) */}
+      <div className="stats-marquee-container">
+        <div className="stats-marquee-track">
+          {/* First Set */}
+          <div className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
+            <h2>56%</h2>
+            <p>Deaths in India linked to diet related disease</p>
+          </div>
+          <div className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
+            <h2>101M+</h2>
+            <p>Diabetics in India today</p>
+          </div>
+          <div className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
+            <h2>5 Pillars</h2>
+            <p>Complete preventive wellness system</p>
+          </div>
+          <div className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
+            <h2>80%</h2>
+            <p>Positive outcomes in pilot clients</p>
+          </div>
+          
+          {/* Second Set for Seamless Loop */}
+          <div className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
+            <h2>56%</h2>
+            <p>Deaths in India linked to diet related disease</p>
+          </div>
+          <div className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
+            <h2>101M+</h2>
+            <p>Diabetics in India today</p>
+          </div>
+          <div className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
+            <h2>5 Pillars</h2>
+            <p>Complete preventive wellness system</p>
+          </div>
+          <div className="stat-item hover:scale-110 transition-transform duration-300 cursor-default">
+            <h2>80%</h2>
+            <p>Positive outcomes in pilot clients</p>
+          </div>
+        </div>
+      </div>
 
       {/* DEFINING THE FUTURE SECTION */}
       <section className="future-health-section">
@@ -192,7 +218,7 @@ const Home = () => {
             <motion.span variants={itemVariants} className="section-kicker">The Paradigm Shift</motion.span>
             <motion.h2 variants={itemVariants} className="section-heading-main">Defining the Future of Health</motion.h2>
             <motion.p variants={itemVariants} className="section-desc text-center">
-              Most healthcare waits for you to get sick, then treats symptoms. DNA-based preventive healthcare flips this model — using your genetic blueprint to identify risks years before symptoms appear.
+              Most healthcare waits for you to get sick, then treats symptoms. DNA based preventive healthcare flips this model using your genetic blueprint to identify risks years before symptoms appear.
             </motion.p>
          </motion.div>
          <motion.div 
@@ -205,7 +231,7 @@ const Home = () => {
             <motion.div variants={itemVariants} className="comp-card negative hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(255,74,74,0.1)] transition-all duration-500">
                <div className="comp-icon"><AlertTriangle color="#ff4a4a"/></div>
                <h3>Traditional Healthcare: Reactive. Generic. Late.</h3>
-               <p>Wait for symptoms → diagnose → treat with standard protocols. 56% of deaths in India are linked to diet-related disease.</p>
+               <p>Wait for symptoms → diagnose → treat with standard protocols. 56% of deaths in India are linked to diet related disease.</p>
             </motion.div>
             <motion.div variants={itemVariants} className="comp-card positive hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(46,204,113,0.15)] transition-all duration-500">
                <div className="comp-icon"><CheckCircle2 color="var(--stale-green)"/></div>
@@ -215,7 +241,7 @@ const Home = () => {
          </motion.div>
          <div className="science-banner">
             <h3>The Science Behind It</h3>
-            <p>Kyeal applies nutrigenomics — the science of how genes interact with food — alongside genetic risk assessment, pharmacogenomics, and behavioural genetics to build India’s most comprehensive DNA-based preventive health plan.</p>
+            <p>Kyeal applies nutrigenomics the science of how genes interact with food alongside genetic risk assessment, pharmacogenomics, and behavioural genetics to build India’s most comprehensive DNA based preventive health plan.</p>
          </div>
       </section>
 
@@ -237,11 +263,11 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="pillars-scroll-wrapper">
+          <div className="pillars-scroll-wrapper" style={{ perspective: "1000px" }}>
             {pillars.map((p) => (
               <motion.div
                 key={p.no}
-                variants={itemVariants}
+                variants={pillarVariants}
                 className="pillar-card-v2"
               >
                 <div className="pillar-icon-wrapper">{p.icon}</div>
@@ -269,22 +295,22 @@ const Home = () => {
             <motion.span variants={itemVariants} className="section-kicker">The Crisis Nobody's Solving</motion.span>
             <motion.h2 variants={itemVariants} className="section-heading-main">Prevention is the cure nobody sells.</motion.h2>
             <motion.p variants={itemVariants} className="section-desc" style={{ marginLeft: 0, textAlign: 'left', maxWidth: '800px'}}>
-              “Let food be thy medicine and medicine be thy food.” — Hippocrates, 400 BCE. Still ignored by modern healthcare. <br/><br/>
+              “Let food be thy medicine and medicine be thy food.” Hippocrates, 400 BCE. Still ignored by modern healthcare. <br/><br/>
               India faces a preventable disease epidemic. Most chronic conditions could be intercepted years earlier with the right food for your specific body. Kyeal exists to change that equation.
             </motion.p>
             
             <motion.div variants={itemVariants} className="crisis-stats-grid">
                <div className="crisis-stat hover:scale-105 hover:shadow-[0_10px_30px_rgba(46,204,113,0.1)] transition-all duration-300 rounded-xl p-4 cursor-default">
                   <h4>₹178.6B</h4>
-                  <p>India’s supplement market — dominated by generic products your body can’t optimise without knowing your DNA.</p>
+                  <p>India’s supplement market dominated by generic products your body can’t optimise without knowing your DNA.</p>
                </div>
                <div className="crisis-stat hover:scale-105 hover:shadow-[0_10px_30px_rgba(46,204,113,0.1)] transition-all duration-300 rounded-xl p-4 cursor-default">
                   <h4>71%</h4>
-                  <p>Of supplement users never consult a doctor — making blind decisions about their biology.</p>
+                  <p>Of supplement users never consult a doctor making blind decisions about their biology.</p>
                </div>
                <div className="crisis-stat hover:scale-105 hover:shadow-[0_10px_30px_rgba(46,204,113,0.1)] transition-all duration-300 rounded-xl p-4 cursor-default">
                   <h4>69%</h4>
-                  <p>Of doctors don’t recommend targeted formulations — the system isn’t built for precision prevention.</p>
+                  <p>Of doctors don’t recommend targeted formulations the system isn’t built for precision prevention.</p>
                </div>
             </motion.div>
 
@@ -348,7 +374,7 @@ const Home = () => {
           <motion.span variants={itemVariants} className="section-kicker">Nutrigenomics in Action</motion.span>
           <motion.h2 variants={itemVariants} className="section-heading-main">Your Plate Is a Prescription.</motion.h2>
           <motion.p variants={itemVariants} className="section-desc">
-            DNA-based preventive healthcare starts at the dinner table. Your genes determine how your body responds to every nutrient.
+            DNA based preventive healthcare starts at the dinner table. Your genes determine how your body responds to every nutrient.
           </motion.p>
         </motion.div>
         <motion.div 
@@ -395,11 +421,11 @@ const Home = () => {
          >
             <motion.div variants={itemVariants} className="diff-card others hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(255,255,255,0.05)] transition-all duration-300">
                <div className="diff-header">Others: PDF Report. No Follow-Through.</div>
-               <p>Standard genetic tests give you data — then leave you alone. No meals. No supplements. No ongoing support.</p>
+               <p>Standard genetic tests give you data then leave you alone. No meals. No supplements. No ongoing support.</p>
             </motion.div>
             <motion.div variants={itemVariants} className="diff-card kyeal hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(46,204,113,0.15)] transition-all duration-300">
                <div className="diff-header">Kyeal: DNA → Meals → Supplements → Monitoring.</div>
-               <p>Complete preventive health loop: genetic analysis → 4-expert interpretation → daily personalised meals → monthly supplements → quarterly biomarker reviews → annual reassessment.</p>
+               <p>Complete preventive health loop: genetic analysis → 4 expert interpretation → daily personalised meals → monthly supplements → quarterly biomarker reviews → annual reassessment.</p>
             </motion.div>
          </motion.div>
          <motion.div 
@@ -409,10 +435,10 @@ const Home = () => {
            transition={{ duration: 0.8, delay: 0.4 }}
            viewport={{ once: true }}
          >
-            <span><strong>Illumina Infinium™</strong> — Gold-standard genotyping technology.</span>
-            <span><strong>NABL & CAP Certified</strong> — India’s highest lab accreditation standards.</span>
-            <span><strong>Tata Memorial Research</strong> — Active cancer research collaboration.</span>
-            <span><strong>MapMyGenome Partner</strong> — ISO, HIPAA, and CAP certified genomics.</span>
+            <span><strong>Illumina Infinium™</strong> Gold standard genotyping technology.</span>
+            <span><strong>NABL & CAP Certified</strong> India’s highest lab accreditation standards.</span>
+            <span><strong>Tata Memorial Research</strong> Active cancer research collaboration.</span>
+            <span><strong>MapMyGenome Partner</strong> ISO, HIPAA, and CAP certified genomics.</span>
          </motion.div>
       </section>
 
@@ -463,7 +489,7 @@ const Home = () => {
             </p>
           </div>
           <div className="cta-right">
-            <button className="btn-primary-pro" style={{width: '100%', justifyContent: 'center', marginBottom: '15px'}}>Start My DNA Blueprint — ₹20,000</button>
+            <button className="btn-primary-pro" style={{width: '100%', justifyContent: 'center', marginBottom: '15px'}}>Start My DNA Blueprint ₹20,000</button>
             <button className="btn-secondary-pro" style={{width: '100%', justifyContent: 'center'}}>Talk to Our Team</button>
           </div>
         </motion.div>
