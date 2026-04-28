@@ -1,22 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-html, body {
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #0B1408;
-  color: #E0F0C1;
-  overflow-x: hidden;
-  width: 100%;
+@layer base {
+  html {
+  }
+  body {
+    @apply bg-[#1A241F] text-[#6F9378] overflow-x-hidden antialiased;
+    font-family: 'Outfit', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[#6F9378];
+    font-family: 'Playfair Display', serif;
+  }
 }
 
-canvas {
-  max-width: 100%;
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl;
+  }
+  .glass-card-hover {
+    @apply transition-all duration-700 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_20px_50px_rgba(255,255,255,0.05)];
+  }
+  .text-gradient-premium {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-[#4A5D4E] to-white;
+  }
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    color: transparent;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-primary-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-olive-green rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-accent-lime;
 }

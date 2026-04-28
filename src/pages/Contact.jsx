@@ -2,33 +2,36 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <div className="bg-white min-h-screen pt-20 pb-32 px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-primary-dark mb-8">
-          Get in <span className="text-olive-green italic">Touch</span>
-        </h1>
-        <p className="text-gray-600 text-lg leading-relaxed mb-12">
-          Ready to optimize your health? Reach out to our team of specialists today.
-        </p>
+    <div className="bg-white min-h-screen pt-48 pb-60 px-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-32">
+          <span className="text-[#4A5D4E] font-black uppercase tracking-[0.6em] text-[10px] mb-8 block">Connect</span>
+          <h1 className="text-7xl md:text-9xl font-black text-[#242521] leading-none tracking-tighter mb-12">
+            Start Your <br /><span className="text-[#4A5D4E] italic">Evolution.</span>
+          </h1>
+          <p className="text-[#4A5D4E]/60 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto font-light">
+            Ready to optimize your biology? Our specialists are standing by to guide your precision journey.
+          </p>
+        </div>
         
-        <div className="bg-gray-50 p-10 rounded-3xl border border-gray-100 text-left mt-12">
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-bold text-primary-dark uppercase tracking-widest mb-2">Full Name</label>
-                <input type="text" className="w-full p-4 rounded-xl border border-gray-200 focus:border-olive-green focus:ring-1 focus:ring-olive-green outline-none transition-all" placeholder="John Doe" />
+        <div className="glass-card p-12 md:p-20 rounded-[80px] border-[#4A5D4E]/5 shadow-2xl">
+          <form className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="space-y-4">
+                <label className="block text-[10px] font-black text-[#4A5D4E] uppercase tracking-[0.4em]">Full Name</label>
+                <input type="text" className="w-full bg-transparent border-b-2 border-[#4A5D4E]/10 py-6 text-2xl font-light text-[#242521] focus:border-[#4A5D4E] outline-none transition-all placeholder:text-[#4A5D4E]/20" placeholder="Identity" />
               </div>
-              <div>
-                <label className="block text-sm font-bold text-primary-dark uppercase tracking-widest mb-2">Email Address</label>
-                <input type="email" className="w-full p-4 rounded-xl border border-gray-200 focus:border-olive-green focus:ring-1 focus:ring-olive-green outline-none transition-all" placeholder="john@example.com" />
+              <div className="space-y-4">
+                <label className="block text-[10px] font-black text-[#4A5D4E] uppercase tracking-[0.4em]">Email Address</label>
+                <input type="email" className="w-full bg-transparent border-b-2 border-[#4A5D4E]/10 py-6 text-2xl font-light text-[#242521] focus:border-[#4A5D4E] outline-none transition-all placeholder:text-[#4A5D4E]/20" placeholder="Communication" />
               </div>
             </div>
-            <div>
-              <label className="block text-sm font-bold text-primary-dark uppercase tracking-widest mb-2">Message</label>
-              <textarea rows="5" className="w-full p-4 rounded-xl border border-gray-200 focus:border-olive-green focus:ring-1 focus:ring-olive-green outline-none transition-all" placeholder="How can we help you?"></textarea>
+            <div className="space-y-4">
+              <label className="block text-[10px] font-black text-[#4A5D4E] uppercase tracking-[0.4em]">Genetic Inquiry</label>
+              <textarea rows="4" className="w-full bg-transparent border-b-2 border-[#4A5D4E]/10 py-6 text-2xl font-light text-[#242521] focus:border-[#4A5D4E] outline-none transition-all placeholder:text-[#4A5D4E]/20 resize-none" placeholder="Your requirements..."></textarea>
             </div>
-            <button className="w-full py-5 bg-olive-green text-white font-bold rounded-xl hover:bg-primary-dark transition-all duration-300 uppercase tracking-widest">
-              Send Message
+            <button className="w-full md:w-fit px-20 py-8 bg-[#242521] text-white font-black rounded-full hover:bg-[#4A5D4E] transition-all duration-500 uppercase tracking-widest text-xl shadow-2xl">
+              Initiate Contact →
             </button>
           </form>
         </div>

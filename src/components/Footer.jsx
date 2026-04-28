@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../assets/LOGO.png';
 
 const Footer = () => {
   return (
@@ -6,11 +7,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-8">
-              <div className="w-8 h-8 bg-accent-lime rounded-full flex items-center justify-center">
-                <span className="text-primary-dark font-bold">K</span>
-              </div>
-              <span className="text-accent-cream font-serif text-xl font-bold tracking-tight">KYEAL</span>
+            <div className="flex items-center mb-8">
+              <img src={Logo} alt="Keyal Logo" className="h-8 w-auto object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity" />
             </div>
             <p className="text-muted-green max-w-sm leading-relaxed mb-8">
               Redefining the standard of care through biological optimization and personalized wellness strategies.
