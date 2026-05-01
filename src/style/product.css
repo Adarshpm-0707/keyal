@@ -1,0 +1,314 @@
+/* ── Product Page – Home Theme ── */
+@import './home.css';
+
+.pp {
+  background: var(--bg-dark);
+  min-height: 100vh;
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  background-image: radial-gradient(circle at 80% 20%, var(--glow) 0%, transparent 40%);
+}
+
+/* ── Product Shell ── */
+.pp__shell {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+  padding: 40px 5% 60px;
+  max-width: 920px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ── LEFT: Image Box ── */
+.pp__img-box {
+  position: sticky;
+  top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pp__img-main {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-glass);
+  background: var(--bg-card);
+  position: relative;
+}
+
+.pp__img-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.pp__img-main:hover img { transform: scale(1.04); }
+
+.pp__img-badges {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.pp__img-badge {
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pp__img-badge--main { color: #000; }
+
+.pp__img-badge--off {
+  background: rgba(0,0,0,0.7);
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(6px);
+}
+
+/* Tag pill below image */
+.pp__img-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 600;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+/* Trust row below */
+.pp__trust {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 0 0;
+}
+
+.pp__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+/* ── RIGHT: Details ── */
+.pp__details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 0;
+}
+
+.pp__category {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--stale-green);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.pp__title {
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.pp__rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.pp__divider { height: 1px; background: var(--border-glass); }
+
+/* Price */
+.pp__price-area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pp__price-main {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--text-main);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.pp__price-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pp__price-original {
+  font-size: 1rem;
+  color: var(--text-dim);
+  text-decoration: line-through;
+  font-variant-numeric: tabular-nums;
+}
+
+.pp__price-badge {
+  background: var(--stale-green-dim);
+  color: var(--stale-green);
+  border-radius: 50px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* Savings */
+.pp__savings {
+  background: var(--stale-green-dim);
+  border: 1px solid rgba(46,204,113,0.15);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* Description */
+.pp__desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Features */
+.pp__features-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-dim);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.pp__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.pp__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+.pp__feature:hover { border-color: rgba(46,204,113,0.2); }
+
+/* CTA */
+.pp__cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.pp__cta-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--stale-green), #22A55B);
+  color: #000;
+  border: none;
+  border-radius: 14px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  transition: box-shadow 0.3s;
+}
+.pp__cta-add:hover { box-shadow: 0 0 30px var(--glow); }
+
+.pp__cta-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px;
+  background: var(--stale-green-dim);
+  border: 1px solid rgba(46,204,113,0.2);
+  color: var(--stale-green);
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+}
+
+.pp__footer-note {
+  font-size: 11px;
+  color: var(--text-dim);
+  opacity: 0.4;
+  line-height: 1.7;
+  text-align: center;
+  padding-top: 4px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .pp__shell {
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    padding: 30px 4%;
+  }
+}
+
+@media (max-width: 850px) {
+  .pp__shell {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 5% 40px;
+  }
+  .pp__img-box { position: static; max-width: 400px; margin: 0 auto; width: 100%; }
+  .pp__img-main { aspect-ratio: 1/1; }
+  .pp__trust { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .pp__shell { padding: 16px 4% 30px; }
+  .pp__price-main { font-size: 1.5rem; }
+  .pp__title { font-size: 1.1rem; }
+  .pp__cta-add { padding: 12px; font-size: 0.8rem; }
+}

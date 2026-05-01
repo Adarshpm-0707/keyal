@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 import Logo from '../assets/LOGO.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cartItems } = useCart();
+
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +23,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
+    { name: 'Vision', path: '/vision' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -42,26 +48,23 @@ const Navbar = () => {
               className="relative text-white/60 hover:text-white transition-colors text-xs font-bold uppercase tracking-[0.2em] group"
             >
               {link.name}
-              <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#6F9378] transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#2ECC71] transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </div>
  
         {/* Desktop Action Icons & Menu Toggle */}
         <div className="flex items-center gap-4 md:gap-8">
-          <motion.div 
-            whileHover={{ scale: 1.1 }}
-            className="relative cursor-pointer group p-2 rounded-full hover:bg-white/5 transition-all"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white group-hover:text-[#6F9378] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            <span className="absolute top-1 right-1 bg-[#6F9378] text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#34453D]">0</span>
-          </motion.div>
-          
-          <button className="hidden sm:block px-6 py-2 border border-[#6F9378] text-[#6F9378] hover:bg-[#6F9378] hover:text-white transition-all duration-500 rounded-full text-xs font-bold uppercase tracking-widest">
-            Login
-          </button>
+            <Link to="/cart" className="relative cursor-pointer group p-2 rounded-full hover:bg-white/5 transition-all">
+              <motion.div whileHover={{ scale: 1.1 }} className="relative">
+                <ShoppingCart className="h-6 w-6 text-white group-hover:text-[#2ECC71] transition-colors" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#2ECC71] text-black text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#0A0B0A]">
+                    {cartCount}
+                  </span>
+                )}
+              </motion.div>
+            </Link>
 
           {/* Mobile Menu Toggle (3 Dots / Hamburger) */}
           <button 
@@ -91,7 +94,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-[#34453D] border-t border-white/5"
+            className="md:hidden overflow-hidden bg-[#0A0B0A] border-t border-white/5"
           >
             <div className="flex flex-col p-8 gap-6">
               {navLinks.map((link) => (
@@ -99,14 +102,11 @@ const Navbar = () => {
                   key={link.name}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-white text-xl font-bold uppercase tracking-widest hover:text-[#6F9378] transition-colors"
+                  className="text-white text-xl font-bold uppercase tracking-widest hover:text-[#2ECC71] transition-colors"
                 >
                   {link.name}
                 </Link>
               ))}
-              <button className="w-full py-4 mt-4 border border-[#6F9378] text-[#6F9378] rounded-xl text-sm font-bold uppercase tracking-widest">
-                Login
-              </button>
             </div>
           </motion.div>
         )}

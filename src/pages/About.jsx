@@ -1,13 +1,46 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Target, Eye, Heart } from 'lucide-react';
+import { Target, Eye, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import "../style/home.css";
 
+// Import Team Images
+import AbhimanyuImg from "../assets/ABHIMANYU PV.png";
+import AdnanImg from "../assets/ADNAN MUHAMMED.png";
+import AbinImg from "../assets/ABIN GEORGE.png";
+import AlexImg from "../assets/ALEX FEMI.png";
+import AjasImg from "../assets/MUHAMMED AJAS M.png";
+
+const team = [
+  { name: "Adnan Muhammed", role: "CEO", image: AdnanImg },
+  { name: "Abhimanyu PV", role: "CGO", image: AbhimanyuImg },
+  { name: "Abin George", role: "COO", image: AbinImg },
+  { name: "Alex Femi", role: "CPO", image: AlexImg },
+  { name: "Muhammed Ajas M", role: "CFO", image: AjasImg },
+];
+
 const About = () => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
   // Ensure the page loads at the top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Auto-play logic (3 seconds)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [currentIndex]);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % team.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + team.length) % team.length);
+  };
 
   return (
     <main className="min-h-screen bg-[#0A0B0A] text-[#E0F0C1] overflow-hidden relative" style={{ paddingTop: "120px", paddingBottom: "100px" }}>
@@ -109,6 +142,105 @@ const About = () => {
             </p>
           </motion.div>
         </div>
+
+        {/* Team Section - Hero Spotlight Design */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-32 pt-24 border-t border-white/5 relative overflow-hidden"
+        >
+          {/* Large Background Text (Role) */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+            <motion.h2 
+              key={`bg-${currentIndex}`}
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 0.03, scale: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="text-[20vw] font-black text-white uppercase leading-none whitespace-nowrap"
+            >
+              {team[currentIndex].role}
+            </motion.h2>
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto px-4">
+            <div className="flex flex-col items-center">
+              
+              {/* Main Portrait - Clean & Borderless */}
+              <div className="relative w-64 h-64 md:w-96 md:h-96 mb-12">
+                <div className="absolute inset-0 bg-[#2ECC71] rounded-full blur-[100px] opacity-10 animate-pulse" />
+                <motion.div
+                  key={`img-${currentIndex}`}
+                  initial={{ opacity: 0, y: 40, rotateY: 30 }}
+                  animate={{ opacity: 1, y: 0, rotateY: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="relative w-full h-full"
+                >
+                  <img
+                    src={team[currentIndex].image}
+                    alt={team[currentIndex].name}
+                    className="w-full h-full object-cover rounded-[60px] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] border border-white/5"
+                  />
+                </motion.div>
+              </div>
+
+              {/* Identity Section */}
+              <div className="text-center space-y-4">
+                <motion.div
+                  key={`name-${currentIndex}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <h3 className="text-5xl md:text-7xl font-bold text-white font-serif tracking-tighter">
+                    {team[currentIndex].name}
+                  </h3>
+                </motion.div>
+                
+                <motion.div
+                  key={`role-${currentIndex}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="flex items-center justify-center gap-4"
+                >
+                  <div className="h-[2px] w-8 bg-[#2ECC71]" />
+                  <p className="text-[#2ECC71] text-xl font-bold tracking-[0.5em] uppercase">
+                    {team[currentIndex].role}
+                  </p>
+                  <div className="h-[2px] w-8 bg-[#2ECC71]" />
+                </motion.div>
+              </div>
+
+              {/* Minimalist Controls */}
+              <div className="flex items-center gap-12 mt-16">
+                <button 
+                  onClick={handlePrev}
+                  className="p-4 rounded-full border border-white/10 text-white/40 hover:text-[#2ECC71] hover:border-[#2ECC71] transition-all"
+                >
+                  <ChevronLeft size={28} />
+                </button>
+
+                <div className="flex gap-3">
+                  {team.map((_, idx) => (
+                    <button 
+                      key={idx}
+                      onClick={() => setCurrentIndex(idx)}
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-500 ${idx === currentIndex ? 'bg-[#2ECC71] scale-125' : 'bg-white/10'}`}
+                    />
+                  ))}
+                </div>
+
+                <button 
+                  onClick={handleNext}
+                  className="p-4 rounded-full border border-white/10 text-white/40 hover:text-[#2ECC71] hover:border-[#2ECC71] transition-all"
+                >
+                  <ChevronRight size={28} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
       </div>
     </main>
