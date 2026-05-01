@@ -24,4 +24,3 @@ yarn-error.log*
 
 # Sensitive Keys
 .env
-src/config.js
