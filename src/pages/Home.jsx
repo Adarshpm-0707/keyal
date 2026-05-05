@@ -17,7 +17,7 @@ import "../style/home.css";
 
 // 3D DNA Component
 const DNAStrand3D = () => {
-  const rungs = Array.from({ length: 34 });
+  const rungs = Array.from({ length: 120 });
 
   return (
     <div className="dna-3d-wrapper">
@@ -296,7 +296,7 @@ const Home = () => {
       </section>
 
       {/* PILLARS SECTION */}
-      <section className="pillars-exploration">
+      <section id="pillars" className="pillars-exploration">
         <motion.div
           initial="hidden"
           whileInView="visible"

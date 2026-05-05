@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import Payment from './pages/Payment';
 import Product from './pages/Product';
 import Loader from './components/Loader';
+import WhatsAppWidget from './components/WhatsAppWidget';
 
 import { CartProvider } from './context/CartContext';
 import SmoothScroll from './components/SmoothScroll';
@@ -31,6 +32,7 @@ function App() {
     <CartProvider>
       <Router>
         {loading && <Loader />}
+        <WhatsAppWidget />
         <SmoothScroll>
           <div className="min-h-screen bg-primary-dark font-sans selection:bg-accent-lime selection:text-primary-dark">
             <Navbar />

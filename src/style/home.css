@@ -41,7 +41,7 @@
   min-height: 100vh;
   padding: 0 10%;
   gap: 40px;
-  align-items: center;
+  align-items: stretch;
   position: relative;
   background-image: radial-gradient(circle at 10% 10%, var(--glow) 0%, transparent 40%);
 }
@@ -140,6 +140,13 @@
   margin-top: 40px;
 }
 
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
 /* GLOBAL TEXT HOVER EFFECTS */
 .home-container h1, 
 .home-container h2, 
@@ -200,6 +207,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.hero-right {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .floating-metric-card {
@@ -221,17 +237,20 @@
 .dna-3d-wrapper {
   perspective: 1000px;
   width: 100%;
-  height: 350px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
 }
 
 .dna-3d-container {
   position: relative;
   width: 120px;
-  height: 300px;
+  height: 100%;
   transform-style: preserve-3d;
 }
 

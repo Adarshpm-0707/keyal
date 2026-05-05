@@ -1,6 +1,17 @@
-import React, { useEffect } from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
+/**
+ * CONTACT PAGE COMPONENT
+ * Security Hardened: Native Fetch, CSP Compatible, Environment Variable Protected
+ */
+import React, { useEffect, useState, useRef } from 'react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from '../config';
+
+// Initialize EmailJS
+if (EMAILJS_PUBLIC_KEY) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
 const InstagramIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -25,9 +36,75 @@ const WhatsAppIcon = () => (
 );
 
 const Contact = () => {
+  const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | 'missing_config'
+  const [errorMessage, setErrorMessage] = useState('');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Check if keys are missing
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      console.error('EmailJS keys are missing! Please check your .env file and restart your server.');
+      setSubmitStatus('missing_config');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Extract data manually
+    const formData = new FormData(form.current);
+    const templateParams = {
+      user_name: formData.get('user_name'),
+      user_email: formData.get('user_email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+
+    // Use native fetch to bypass any SDK issues
+    const data = {
+      service_id: EMAILJS_SERVICE_ID,
+      template_id: EMAILJS_TEMPLATE_ID,
+      user_id: EMAILJS_PUBLIC_KEY,
+      template_params: templateParams,
+    };
+
+    fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          console.log('Email successfully sent!');
+          setSubmitStatus('success');
+          form.current.reset();
+        } else {
+          const errText = await response.text();
+          console.error('Email failed to send:', errText);
+          setErrorMessage(errText || `Error ${response.status}: ${response.statusText}`);
+          setSubmitStatus('error');
+        }
+      })
+      .catch((error) => {
+        console.error('Network Error:', error);
+        setErrorMessage(error.message === 'Failed to fetch' 
+          ? 'Network Error: Please check your internet connection or disable Ad-blockers.' 
+          : error.message);
+        setSubmitStatus('error');
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -113,13 +190,15 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="lg:col-span-7 bg-white/5 border border-white/10 p-5 md:p-8 rounded-2xl md:rounded-3xl backdrop-blur-md shadow-2xl"
           >
-            <form className="space-y-4 md:space-y-5">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-[10px] md:text-xs uppercase tracking-widest text-[#2ECC71] font-bold pl-1">Your Name</label>
                   <input 
                     type="text" 
+                    name="user_name"
+                    required
                     className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 md:py-3 px-4 text-sm text-white placeholder:text-[#94A3B8]/60 focus:outline-none focus:border-[#2ECC71] focus:bg-white/10 transition-all" 
                     placeholder="John Doe"
                   />
@@ -128,6 +207,8 @@ const Contact = () => {
                   <label className="text-[10px] md:text-xs uppercase tracking-widest text-[#2ECC71] font-bold pl-1">Your Email</label>
                   <input 
                     type="email" 
+                    name="user_email"
+                    required
                     className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 md:py-3 px-4 text-sm text-white placeholder:text-[#94A3B8]/60 focus:outline-none focus:border-[#2ECC71] focus:bg-white/10 transition-all" 
                     placeholder="john@example.com"
                   />
@@ -138,6 +219,8 @@ const Contact = () => {
                 <label className="text-[10px] md:text-xs uppercase tracking-widest text-[#2ECC71] font-bold pl-1">Subject</label>
                 <input 
                   type="text" 
+                  name="subject"
+                  required
                   className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 md:py-3 px-4 text-sm text-white placeholder:text-[#94A3B8]/60 focus:outline-none focus:border-[#2ECC71] focus:bg-white/10 transition-all" 
                   placeholder="How can we help?"
                 />
@@ -146,6 +229,8 @@ const Contact = () => {
               <div className="space-y-1.5">
                 <label className="text-[10px] md:text-xs uppercase tracking-widest text-[#2ECC71] font-bold pl-1">Message</label>
                 <textarea 
+                  name="message"
+                  required
                   rows="3" 
                   className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 md:py-3 px-4 text-sm text-white placeholder:text-[#94A3B8]/60 focus:outline-none focus:border-[#2ECC71] focus:bg-white/10 transition-all resize-none"
                   placeholder="Type your message here..."
@@ -154,12 +239,62 @@ const Contact = () => {
 
               <div className="pt-2">
                 <button 
-                  type="button" 
-                  className="w-full md:w-auto px-6 py-3 bg-[#2ECC71] text-black text-xs md:text-sm font-bold rounded-xl hover:bg-white transition-all duration-300 uppercase tracking-widest shadow-[0_0_15px_rgba(46,204,113,0.3)]"
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full md:w-auto px-8 py-3 bg-[#2ECC71] text-black text-xs md:text-sm font-bold rounded-xl hover:bg-white disabled:opacity-70 disabled:hover:bg-[#2ECC71] transition-all duration-300 uppercase tracking-widest shadow-[0_0_15px_rgba(46,204,113,0.3)] flex items-center justify-center gap-2"
                 >
-                  Submit Message
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Submit Message
+                    </>
+                  )}
                 </button>
               </div>
+
+              <AnimatePresence>
+                {submitStatus === 'success' && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-sm"
+                  >
+                    <CheckCircle className="w-5 h-5 shrink-0" />
+                    <p>Thank you! Your message has been sent successfully.</p>
+                  </motion.div>
+                )}
+                {submitStatus === 'missing_config' && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="flex flex-col gap-2 p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm"
+                  >
+                    <div className="flex items-center gap-3">
+                      <AlertCircle className="w-5 h-5 shrink-0" />
+                      <p className="font-bold">Configuration Missing</p>
+                    </div>
+                    <p className="pl-8 opacity-80">The EmailJS keys could not be found. If you just added them to your .env file, you must <strong>restart your development server</strong> (stop it and run npm start again).</p>
+                  </motion.div>
+                )}
+                {submitStatus === 'error' && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
+                  >
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <p>{errorMessage}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
             </form>
 

@@ -29,11 +29,13 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 w-full z-[100] transition-colors duration-300 px-6 md:px-12 py-4 md:py-6 border-b ${
-        isScrolled || isMenuOpen ? 'bg-[#0A0B0A] border-white/10 shadow-2xl' : 'bg-transparent border-transparent'
+      className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
+        isScrolled || isMenuOpen 
+          ? 'bg-[#0A0B0A]/95 backdrop-blur-xl border-b border-white/10 py-4 shadow-2xl' 
+          : 'bg-transparent border-b border-transparent py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img src={Logo} alt="Keyal Logo" className="h-7 w-auto object-contain" />
@@ -53,7 +55,7 @@ const Navbar = () => {
           ))}
         </div>
  
-        {/* Desktop Action Icons & Menu Toggle */}
+        {/* Actions & Toggle */}
         <div className="flex items-center gap-4 md:gap-8">
             <Link to="/cart" className="relative cursor-pointer group p-2 rounded-full hover:bg-white/5 transition-all">
               <motion.div whileHover={{ scale: 1.1 }} className="relative">
@@ -66,7 +68,7 @@ const Navbar = () => {
               </motion.div>
             </Link>
 
-          {/* Mobile Menu Toggle (3 Dots / Hamburger) */}
+          {/* Mobile Menu Toggle */}
           <button 
             className="md:hidden flex flex-col gap-1.5 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -91,12 +93,13 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-[#0A0B0A] border-t border-white/5"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "circOut" }}
+            className="md:hidden absolute top-full left-0 w-full bg-[#0A0B0A] border-t border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.4)] overflow-hidden"
           >
-            <div className="flex flex-col p-8 gap-6">
+            <div className="flex flex-col p-10 gap-8 items-center text-center">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}

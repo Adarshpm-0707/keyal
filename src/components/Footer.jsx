@@ -1,12 +1,13 @@
 import React from 'react';
-import Logo from '../assets/LOGO.png';
-import { ArrowRight, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { 
+  ArrowUpRight, 
 
-const TwitterIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-  </svg>
-);
+  Globe,
+  ShieldCheck,
+} from 'lucide-react';
+import Logo from '../assets/LOGO.png';
 
 const InstagramIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -16,72 +17,117 @@ const InstagramIcon = () => (
   </svg>
 );
 
-const LinkedinIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-  </svg>
-);
-
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const exploreLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Vision', path: '/vision' },
+    { name: 'Contact', path: '/contact' },
+  ];
+
+  const supportLinks = [
+    { name: 'Privacy Policy', path: '#' },
+    { name: 'Terms of Service', path: '#' },
+  ];
+
+  const socialLinks = [
+    { icon: <InstagramIcon />, href: 'https://www.instagram.com/kyeal_wellness/', name: 'Instagram' },
+  ];
+
   return (
-    <footer className="bg-[#0A0B0A] pt-24 pb-12 px-6 border-t border-white/10 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[2px] bg-gradient-to-r from-transparent via-[#2ECC71] to-transparent opacity-50" />
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#2ECC71] rounded-full blur-[150px] opacity-10 pointer-events-none" />
+    <footer className="relative bg-[#0A0B0A] pt-32 pb-12 px-6 md:px-12 overflow-hidden border-t border-white/5">
+      {/* Background Decorative Elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#2ECC71]/30 to-transparent" />
+      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-[#2ECC71]/5 rounded-full blur-[120px] pointer-events-none" />
+      
+      {/* Large Background Text */}
+    
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
           
-          {/* Brand Column */}
-          <div className="col-span-1 lg:col-span-1 flex flex-col items-start text-left">
-            <div className="flex items-center mb-6">
-              <img src={Logo} alt="Keyal Logo" className="h-9 w-auto object-contain filter brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
-            </div>
-            <p className="text-[#94A3B8] text-sm leading-relaxed mb-8 max-w-xs pr-4">
-              Redefining the standard of care through biological optimization and DNA-powered wellness strategies.
-            </p>
-            <div className="flex gap-4 justify-start">
-              {[
-                { icon: <TwitterIcon />, href: "#" },
-                { icon: <InstagramIcon />, href: "#" },
-                { icon: <LinkedinIcon />, href: "#" }
-              ].map((social, idx) => (
-                <a key={idx} href={social.href} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#94A3B8] hover:bg-[#2ECC71] hover:text-black hover:border-[#2ECC71] transition-all duration-300 shadow-lg hover:shadow-[#2ECC71]/20">
-                  {social.icon}
+          {/* Brand & Mission Column */}
+          <div className="lg:col-span-5 space-y-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center"
+            >
+              <img 
+                src={Logo} 
+                alt="Keyal Logo" 
+                className="h-10 w-auto object-contain brightness-0 invert opacity-90" 
+              />
+            </motion.div>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-[#94A3B8] text-lg leading-relaxed max-w-md"
+            >
+              We are decoding human biology to create a future where health is personalized, 
+              preventive, and powered by your own DNA.
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="flex gap-4"
+            >
+              {socialLinks.map((social) => (
+                <a 
+                  key={social.name} 
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#94A3B8] hover:text-[#2ECC71] hover:border-[#2ECC71]/50 hover:bg-[#2ECC71]/5 transition-all duration-500 group"
+                >
+                  <span className="group-hover:scale-110 transition-transform duration-300">
+                    {social.icon}
+                  </span>
                 </a>
               ))}
-            </div>
+            </motion.div>
           </div>
-          
-          {/* Links Section (2 columns on all devices) */}
-          <div className="col-span-1 lg:col-span-2 grid grid-cols-2 gap-8">
-            {/* Links Column 1 */}
-            <div className="text-left">
-              <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-xs">Navigation</h4>
-              <ul className="space-y-4 inline-block text-left">
-                {['Home', 'About Us', 'The Pillars', 'Shop'].map((item, idx) => (
-                  <li key={idx}>
-                    <a href="/" className="text-[#94A3B8] text-sm hover:text-[#2ECC71] transition-colors flex items-center gap-3 group">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC71] opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_#2ECC71]" />
-                      {item}
-                    </a>
+
+          {/* Links Columns */}
+          <div className="lg:col-span-3 grid grid-cols-2 gap-8">
+            <div className="space-y-8">
+              <h4 className="text-[#2ECC71] text-[10px] font-black uppercase tracking-[0.3em]">Explore</h4>
+              <ul className="space-y-4">
+                {exploreLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link 
+                      to={link.path} 
+                      className="text-[#94A3B8] hover:text-white transition-colors duration-300 text-sm flex items-center group gap-2"
+                    >
+                      <span className="w-0 h-px bg-[#2ECC71] group-hover:w-3 transition-all duration-300" />
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
             
-            {/* Links Column 2 */}
-            <div className="text-left">
-              <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-xs">Resources</h4>
-              <ul className="space-y-4 inline-block text-left">
-                {['Research Papers', 'Case Studies', 'Support Center', 'Privacy Policy'].map((item, idx) => (
-                  <li key={idx}>
-                    <a href="/" className="text-[#94A3B8] text-sm hover:text-[#2ECC71] transition-colors flex items-center gap-3 group">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2ECC71] opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_#2ECC71]" />
-                      {item}
-                    </a>
+            <div className="space-y-8">
+              <h4 className="text-[#2ECC71] text-[10px] font-black uppercase tracking-[0.3em]">Support</h4>
+              <ul className="space-y-4">
+                {supportLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link 
+                      to={link.path} 
+                      className="text-[#94A3B8] hover:text-white transition-colors duration-300 text-sm flex items-center group gap-2"
+                    >
+                      <span className="w-0 h-px bg-[#2ECC71] group-hover:w-3 transition-all duration-300" />
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -89,36 +135,49 @@ const Footer = () => {
           </div>
 
           {/* Newsletter Column */}
-          <div className="col-span-1 lg:col-span-1 text-left">
-            <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-xs">Stay Optimized</h4>
-            <p className="text-[#94A3B8] text-sm mb-4 max-w-sm">
-              Subscribe to get the latest research on longevity directly to your inbox.
-            </p>
-            <div className="relative max-w-sm">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail size={16} className="text-[#94A3B8]" />
+          <div className="lg:col-span-4 space-y-8">
+            <div className="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-32 h-32 bg-[#2ECC71]/10 rounded-full blur-3xl" />
+              
+              <h4 className="text-white text-xl font-bold mb-2">Join the Lab</h4>
+              <p className="text-[#94A3B8] text-sm mb-6">
+                Get the latest research on biological optimization directly to your inbox.
+              </p>
+              
+            
+              
+              <div className="mt-6 flex items-center gap-4 text-[10px] text-[#94A3B8]/60 uppercase tracking-widest font-bold">
+                <span className="flex items-center gap-1"><ShieldCheck size={12} className="text-[#2ECC71]" /> Encrypted</span>
+                <span className="flex items-center gap-1"><Globe size={12} className="text-[#2ECC71]" /> Global</span>
               </div>
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-10 pr-12 text-white text-sm focus:outline-none focus:border-[#2ECC71] transition-colors placeholder:text-[#94A3B8]/50"
-              />
-              <button className="absolute inset-y-0 right-1.5 top-1.5 bottom-1.5 bg-[#2ECC71] text-black px-3 rounded-lg hover:bg-white transition-colors flex items-center justify-center">
-                <ArrowRight size={16} />
-              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex items-center gap-8">
+            <p className="text-[#94A3B8] text-[10px] font-bold uppercase tracking-widest">
+              © {currentYear} KYEAL Healthcare Solutions
+            </p>
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#2ECC71] animate-pulse" />
+              <span className="text-[10px] text-[#2ECC71] font-black uppercase tracking-widest">System Online</span>
             </div>
           </div>
           
-        </div>
-        
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <p className="text-[#94A3B8] text-xs text-left">
-            © {new Date().getFullYear()} KYEAL Healthcare Solutions. All rights reserved.
-          </p>
-          <div className="flex flex-wrap justify-start gap-4 sm:gap-8">
-            <span className="text-[#94A3B8] text-xs uppercase tracking-widest">Handcrafted with precision</span>
-            <span className="text-[#2ECC71] text-xs uppercase tracking-widest font-semibold drop-shadow-[0_0_8px_rgba(46,204,113,0.5)]">Kerala, India</span>
+          <div className="flex items-center gap-12">
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] text-[#94A3B8] font-bold uppercase tracking-[0.2em]">Based in</span>
+              <span className="text-sm text-white font-medium">Kerala, India</span>
+            </div>
+            <motion.button 
+              whileHover={{ y: -5 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-500"
+            >
+              <ArrowUpRight size={20} className="-rotate-45" />
+            </motion.button>
           </div>
         </div>
       </div>
