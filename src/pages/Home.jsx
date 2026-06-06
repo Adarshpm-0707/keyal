@@ -124,7 +124,7 @@ const Home = () => {
 
   const faqs = [
     { q: "What is DNA-based preventive healthcare?", a: "DNA-based preventive healthcare uses genetic testing to identify disease risks before symptoms appear. Kyeal is India's first company to offer this as a complete system, not just a test." },
-    { q: "How much does the Kyeal program cost?", a: "Kyeal's DNA Blueprint starts at ₹19,999. Includes the DNA test, 5-pillar analysis, 4-expert panel, meal delivery, monthly supplements, and annual health review." },
+    { q: "How much does the Kyeal program cost?", a: "Kyeal's DNA Blueprint starts at ₹30,000. Includes the DNA test, 5-pillar analysis, 4-expert panel, meal delivery, monthly supplements, and annual health review." },
     { q: "How is Kyeal different from other DNA tests?", a: "Other DNA tests give a PDF report  then stop. Kyeal delivers an ongoing system: daily meals, monthly supplements, quarterly biomarker reviews, and annual reassessment." },
     { q: "Are the labs certified?", a: "Yes. We use Illumina Infinium™ technology through NABL & CAP-certified labs, with research collaboration with Tata Memorial Hospital and MapMyGenome." },
     { q: "Can genetics really prevent cancer?", a: "Kyeal tracks 18+ cancer-linked genetic markers. Early identification of genetic risk combined with targeted nutrition significantly improves the odds of interception." }
@@ -199,7 +199,12 @@ const Home = () => {
             >
               Get Your DNA Blueprint <ArrowRight size={18} />
             </motion.button>
-            <button className="btn-secondary-pro">Book For Consultation</button>
+            <button 
+              className="btn-secondary-pro"
+              onClick={() => window.open(`https://wa.me/917356740010?text=${encodeURIComponent("hi i would like to book a consultation")}`, '_blank')}
+            >
+              Book For Consultation
+            </button>
           </div>
         </motion.div>
 
@@ -652,7 +657,7 @@ const Home = () => {
               style={{width: '100%', justifyContent: 'center', marginBottom: '15px'}}
               onClick={() => navigate('/product')}
             >
-              Start My DNA Blueprint ₹19,999
+              Start My DNA Blueprint ₹30,000
             </button>
             <button className="btn-secondary-pro" style={{width: '100%', justifyContent: 'center'}} onClick={() => navigate('/contact')}>Talk to Our Team</button>
           </div>

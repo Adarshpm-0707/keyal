@@ -10,6 +10,9 @@ import Contact from './pages/Contact';
 import Cart from './pages/Cart';
 import Payment from './pages/Payment';
 import Product from './pages/Product';
+import Services from './pages/Services';
+import ReportDetail from './pages/ReportDetail';
+import TermsAndConditions from './pages/TermsAndConditions';
 import Loader from './components/Loader';
 import WhatsAppWidget from './components/WhatsAppWidget';
 
@@ -40,10 +43,14 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/vision" element={<Vision />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/service" element={<Services />} />
+              <Route path="/report-detail" element={<ReportDetail />} />
               <Route path="/payment" element={<Payment />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/product" element={<Product />} />
+              <Route path="/terms" element={<TermsAndConditions />} />
             </Routes>
             <Footer />
           </div>

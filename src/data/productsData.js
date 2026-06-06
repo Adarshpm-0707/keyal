@@ -10,8 +10,8 @@ const products = [
     image: productImg,
     description:
       "India's first complete DNA-based preventive healthcare kit. One NABL-certified DNA test covering all 5 wellness pillars — mental health, physical fitness, personalised nutrition, preventive disease screening, and continuous health monitoring. Delivered to your doorstep.",
-    price: 19999,
-    originalPrice: 24999,
+    price: 30000,
+    originalPrice: 39999,
     rating: 4.9,
     reviews: 218,
     features: [

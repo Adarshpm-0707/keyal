@@ -24,12 +24,12 @@ const Footer = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Vision', path: '/vision' },
+    { name: 'Services', path: '/services' },
     { name: 'Contact', path: '/contact' },
   ];
 
   const supportLinks = [
-    { name: 'Privacy Policy', path: '#' },
-    { name: 'Terms of Service', path: '#' },
+    { name: 'Terms & Conditions', path: '/terms' },
   ];
 
   const socialLinks = [
@@ -117,7 +117,7 @@ const Footer = () => {
             </div>
             
             <div className="space-y-8">
-              <h4 className="text-[#2ECC71] text-[10px] font-black uppercase tracking-[0.3em]">Support</h4>
+              <h4 className="text-[#2ECC71] text-[10px] font-black uppercase tracking-[0.3em]">Legal</h4>
               <ul className="space-y-4">
                 {supportLinks.map((link) => (
                   <li key={link.name}>
@@ -160,10 +160,7 @@ const Footer = () => {
             <p className="text-[#94A3B8] text-[10px] font-bold uppercase tracking-widest">
               © {currentYear} KYEAL Healthcare Solutions
             </p>
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#2ECC71] animate-pulse" />
-              <span className="text-[10px] text-[#2ECC71] font-black uppercase tracking-widest">System Online</span>
-            </div>
+        
           </div>
           
           <div className="flex items-center gap-12">
