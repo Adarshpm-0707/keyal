@@ -103,7 +103,7 @@ const ReportDetail = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-4">
             <button
-              onClick={() => navigate("/services")}
+              onClick={() => navigate("/")}
               className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#94A3B8] hover:text-[#2ECC71] transition-colors group"
             >
               <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />

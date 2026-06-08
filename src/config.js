@@ -9,3 +9,4 @@ export const WOO_CONSUMER_SECRET = process.env.REACT_APP_WOO_CONSUMER_SECRET || 
 export const EMAILJS_SERVICE_ID = (process.env.REACT_APP_EMAILJS_SERVICE_ID || "").trim();
 export const EMAILJS_TEMPLATE_ID = (process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "").trim();
 export const EMAILJS_PUBLIC_KEY = (process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "").trim();
+export const EMAILJS_CUSTOMER_TEMPLATE_ID = (process.env.REACT_APP_EMAILJS_CUSTOMER_TEMPLATE_ID || "template_sn2zt38").trim();

@@ -1,16 +1,17 @@
-import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from "../config";
+import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY, EMAILJS_CUSTOMER_TEMPLATE_ID } from "../config";
 
 /**
- * Sends a notification email when a new order is received.
- * Mapped to the user's custom EmailJS template variables.
+ * Sends notification emails when a new order is received.
+ * Sends an admin email notification and a separate customer receipt email.
  */
 export const sendOrderEmailNotification = async (order) => {
   const serviceId = EMAILJS_SERVICE_ID;
-  const templateId = process.env.REACT_APP_EMAILJS_ORDER_TEMPLATE_ID || EMAILJS_TEMPLATE_ID;
+  const adminTemplateId = process.env.REACT_APP_EMAILJS_ORDER_TEMPLATE_ID || EMAILJS_TEMPLATE_ID;
+  const customerTemplateId = EMAILJS_CUSTOMER_TEMPLATE_ID;
   const publicKey = EMAILJS_PUBLIC_KEY;
 
-  if (!serviceId || !templateId || !publicKey) {
-    console.warn("EmailJS configuration missing. Skipping order email notification.");
+  if (!serviceId || !publicKey) {
+    console.warn("EmailJS configuration missing. Skipping email notifications.");
     return { success: false, error: "Configuration missing" };
   }
 
@@ -31,6 +32,8 @@ export const sendOrderEmailNotification = async (order) => {
   const templateParams = {
     customer_name: billing.first_name || "Anonymous",
     customer_email: billing.email || "N/A",
+    name: billing.first_name || "Anonymous", // Maps to {{name}} in EmailJS template
+    email: billing.email || "N/A",           // Maps to {{email}} in EmailJS template
     phone: billing.phone || "N/A",
     product_name: productName || "N/A",
     quantity: quantity,
@@ -38,32 +41,68 @@ export const sendOrderEmailNotification = async (order) => {
     address: addressBlock
   };
 
-  const payload = {
-    service_id: serviceId,
-    template_id: templateId,
-    user_id: publicKey,
-    template_params: templateParams,
-  };
+  let adminSuccess = false;
+  let customerSuccess = false;
 
-  try {
-    const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+  // 1. Send Admin Notification Email
+  if (adminTemplateId) {
+    try {
+      const payload = {
+        service_id: serviceId,
+        template_id: adminTemplateId,
+        user_id: publicKey,
+        template_params: templateParams,
+      };
 
-    if (response.ok) {
-      console.log("Order confirmation email sent successfully.");
-      return { success: true };
-    } else {
-      const errText = await response.text();
-      console.error("Order confirmation email failed:", errText);
-      return { success: false, error: errText };
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        console.log("Admin order notification email sent successfully.");
+        adminSuccess = true;
+      } else {
+        const errText = await response.text();
+        console.error("Admin order notification email failed:", errText);
+      }
+    } catch (error) {
+      console.error("Error sending admin order email:", error);
     }
-  } catch (error) {
-    console.error("Network error sending order email:", error);
-    return { success: false, error: error.message };
   }
+
+  // 2. Send Customer Confirmation Email (Separate Template)
+  if (customerTemplateId) {
+    try {
+      const payload = {
+        service_id: serviceId,
+        template_id: customerTemplateId,
+        user_id: publicKey,
+        template_params: templateParams,
+      };
+
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        console.log("Customer confirmation email sent successfully.");
+        customerSuccess = true;
+      } else {
+        const errText = await response.text();
+        console.error("Customer confirmation email failed:", errText);
+      }
+    } catch (error) {
+      console.error("Error sending customer confirmation email:", error);
+    }
+  }
+
+  return { 
+    success: adminSuccess || customerSuccess,
+    adminSuccess,
+    customerSuccess 
+  };
 };

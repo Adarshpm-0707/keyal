@@ -224,6 +224,7 @@ const Payment = () => {
 
   const handlePlaceOrder = async (e) => {
     if (e) e.preventDefault();
+    if (isProcessing) return;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     if (!formData.email || !formData.name || !formData.address || !formData.phone || !formData.city || !formData.state || !formData.postcode || !formData.country) {
@@ -246,7 +247,7 @@ const Payment = () => {
         setIsProcessing(false);
         return;
       }
-      
+
       const lineItems = cartItems.map(item => ({
         product_id: item.id,
         name: item.name || "",
@@ -255,10 +256,11 @@ const Payment = () => {
       }));
 
       // Construction of the Order Payload
-      const orderData = {
+      const orderData = { 
         payment_method: "razorpay",
         payment_method_title: "Razorpay Secure Gateway",
-        set_paid: false, // will update to true upon successful transaction
+        set_paid: false,
+        payment_status: "pending",
         total: total,
         billing: {
           first_name: formData.name,
@@ -284,10 +286,10 @@ const Payment = () => {
         line_items: lineItems
       };
 
-      // 2. Initialize Razorpay options
+      // 2. Initialize Razorpay options (30,000 INR = 3,000,000 paise)
       const options = {
         key: RAZORPAY_KEY,
-        amount: 100, // For testing: charge 1 INR (100 paise) instead of the actual total
+        amount: 30000 * 100, // 30,000 INR
         currency: "INR",
         name: "KYEAL",
         description: "Precision Health System",
@@ -345,8 +347,8 @@ const Payment = () => {
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
-      console.error("Order Setup Error:", error);
-      setError("Setup Failure: Failed to initialize payment gateway.");
+      console.error("Order Placement Error:", error);
+      setError("Sync Failure: " + (error.message || "Failed to initialize payment gateway."));
       setIsProcessing(false);
     }
   };
