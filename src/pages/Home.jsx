@@ -11,9 +11,21 @@ import {
   LineChart,
   ChevronDown,
   AlertTriangle,
-  CheckCircle2
+  CheckCircle2,
+  Sparkles,
+  RefreshCw,
+  Camera,
+  Dna,
+  Maximize2,
+  X
 } from "lucide-react";
 import "../style/home.css";
+
+// Import AI Coach Showcase Images
+import aiImg1 from "../assets/AI 1 (1).jpeg";
+import aiImg2 from "../assets/AI 1 (2).jpeg";
+import aiImg3 from "../assets/AI 1 (3).jpeg";
+import aiImg4 from "../assets/AI 1 (4).jpeg";
 
 // 3D DNA Component
 const DNAStrand3D = () => {
@@ -72,6 +84,8 @@ const FAQItem = ({ question, answer }) => {
 
 const Home = () => {
   const navigate = useNavigate();
+  const [selectedAiImg, setSelectedAiImg] = useState(null);
+  
   // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -215,7 +229,6 @@ const Home = () => {
           </div>
         </motion.div>
       </section>
-
       {/* NEW STATS BAND (MARQUEE) */}
       <div className="stats-marquee-container">
         <div className="stats-marquee-track">
@@ -256,6 +269,208 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      
+      {/* INTRODUCING KYEAL AI COACH SECTION */}
+      <section className="ai-coach-section">
+        <motion.div 
+          className="ai-coach-container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={containerVariants}
+        >
+          {/* Badge & Label Header */}
+          <motion.div variants={itemVariants} className="ai-coach-badge-row">
+            <span className="ai-coach-section-label">Section: "Introducing Kyeal AI Coach"</span>
+            <span className="ai-coach-tag-badge">
+              <Sparkles size={13} /> Coming Soon
+            </span>
+          </motion.div>
+
+          {/* Main Headline */}
+          <motion.h2 variants={itemVariants} className="ai-coach-headline">
+            Meet Your <span className="gradient-text">DNA-Synced AI Coach</span>
+          </motion.h2>
+
+          {/* Subheadline */}
+          <motion.p variants={itemVariants} className="ai-coach-subheadline">
+            An AI that grows and adapts with you — not one that judges you.
+          </motion.p>
+
+          {/* 4 AI Images Showcase Gallery Grid */}
+          <motion.div variants={itemVariants} className="ai-coach-gallery-grid">
+            <motion.div 
+              whileHover={{ y: -8, scale: 1.02 }} 
+              className="ai-gallery-card group"
+              onClick={() => setSelectedAiImg({ img: aiImg1, title: "Real-Time Recalibration", tag: "Real-Time Recalibration", desc: "Log any meal or missed workout, and your entire upcoming plan adjusts automatically — no guilt, no restarting from scratch." })}
+            >
+              <div className="ai-gallery-img-wrapper">
+                <img src={aiImg1} alt="Real-Time Recalibration Interface" className="ai-gallery-img" />
+                <div className="ai-gallery-zoom-badge">
+                  <Maximize2 size={16} /> Click to View Full Size
+                </div>
+              </div>
+              <div className="ai-gallery-overlay">
+                <span className="ai-gallery-tag"><RefreshCw size={12} className="inline mr-1" /> Real-Time Recalibration</span>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -8, scale: 1.02 }} 
+              className="ai-gallery-card group"
+              onClick={() => setSelectedAiImg({ img: aiImg2, title: "DNA-Synced Intelligence", tag: "DNA-Synced Intelligence", desc: "Every adjustment is cross-referenced against your genetic markers and metabolic profile, not generic averages." })}
+            >
+              <div className="ai-gallery-img-wrapper">
+                <img src={aiImg2} alt="DNA-Synced Intelligence Analysis" className="ai-gallery-img" />
+                <div className="ai-gallery-zoom-badge">
+                  <Maximize2 size={16} /> Click to View Full Size
+                </div>
+              </div>
+              <div className="ai-gallery-overlay">
+                <span className="ai-gallery-tag"><Dna size={12} className="inline mr-1" /> DNA-Synced Intelligence</span>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -8, scale: 1.02 }} 
+              className="ai-gallery-card group"
+              onClick={() => setSelectedAiImg({ img: aiImg3, title: "Photo-to-Analysis", tag: "Photo-to-Analysis", desc: "Snap a photo of any meal and get an instant breakdown, DNA compatibility score, and updated plan in seconds." })}
+            >
+              <div className="ai-gallery-img-wrapper">
+                <img src={aiImg3} alt="Photo-to-Analysis Meal Scanner" className="ai-gallery-img" />
+                <div className="ai-gallery-zoom-badge">
+                  <Maximize2 size={16} /> Click to View Full Size
+                </div>
+              </div>
+              <div className="ai-gallery-overlay">
+                <span className="ai-gallery-tag"><Camera size={12} className="inline mr-1" /> Photo-to-Analysis</span>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -8, scale: 1.02 }} 
+              className="ai-gallery-card group"
+              onClick={() => setSelectedAiImg({ img: aiImg4, title: "Adaptive Biological Blueprint", tag: "Adaptive Protocol", desc: "No shame. No rigid rules. Just a coach that lives your real life with you, keeping your Biological Blueprint aligned." })}
+            >
+              <div className="ai-gallery-img-wrapper">
+                <img src={aiImg4} alt="Adaptive Biological Blueprint Protocol" className="ai-gallery-img" />
+                <div className="ai-gallery-zoom-badge">
+                  <Maximize2 size={16} /> Click to View Full Size
+                </div>
+              </div>
+              <div className="ai-gallery-overlay">
+                <span className="ai-gallery-tag"><Sparkles size={12} className="inline mr-1" /> Adaptive Protocol</span>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Body Copy ("Imagine" statement) */}
+          <motion.div variants={itemVariants} className="ai-coach-imagine-card">
+            <div className="imagine-quote-icon">“</div>
+            <p className="imagine-lead">Imagine an AI that grows and adapts with you.</p>
+            <p className="imagine-body">
+              Had a slice of cake? A late-night snack? Skipped the gym? Instead of feeling guilty, just upload it into Kyeal. Your AI Coach instantly recalculates — automatically adjusting your upcoming diet, workouts, and supplements to bring you back on track.
+            </p>
+            <p className="imagine-footer">
+              No shame. No rigid rules. Just a coach that lives your real life with you, and keeps your Biological Blueprint aligned no matter what today looked like.
+            </p>
+          </motion.div>
+
+          {/* Feature Highlights (3 Cards) */}
+          <motion.div variants={containerVariants} className="ai-coach-cards-grid">
+            {/* Card 1 */}
+            <motion.div variants={itemVariants} className="ai-coach-card">
+              <div className="ai-coach-card-icon">
+                <RefreshCw size={26} />
+              </div>
+              <h3 className="ai-coach-card-title">Real-Time Recalibration</h3>
+              <p className="ai-coach-card-text">
+                Log any meal or missed workout, and your entire upcoming plan adjusts automatically — no guilt, no restarting from scratch.
+              </p>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div variants={itemVariants} className="ai-coach-card feature-highlight">
+              <div className="ai-coach-card-icon">
+                <Dna size={26} />
+              </div>
+              <h3 className="ai-coach-card-title">DNA-Synced Intelligence</h3>
+              <p className="ai-coach-card-text">
+                Every adjustment is cross-referenced against your genetic markers and metabolic profile, not generic averages.
+              </p>
+            </motion.div>
+
+            {/* Card 3 */}
+            <motion.div variants={itemVariants} className="ai-coach-card">
+              <div className="ai-coach-card-icon">
+                <Camera size={26} />
+              </div>
+              <h3 className="ai-coach-card-title">Photo-to-Analysis</h3>
+              <p className="ai-coach-card-text">
+                Snap a photo of any meal and get an instant breakdown, DNA compatibility score, and updated plan in seconds.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* CTA Button & Micro-copy */}
+          <motion.div variants={itemVariants} className="ai-coach-cta-container">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary-pro ai-coach-cta-btn cursor-pointer"
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate('/waitlist');
+              }}
+            >
+              Join the Waitlist <ArrowRight size={18} />
+            </motion.button>
+            <p className="ai-coach-microcopy">
+              Be the first to experience an AI coach that adapts to your life — not the other way around.
+            </p>
+          </motion.div>
+        </motion.div>
+
+        {/* Full Size Image Preview Modal */}
+        <AnimatePresence>
+          {selectedAiImg && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="ai-modal-backdrop"
+              onClick={() => setSelectedAiImg(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.85, opacity: 0 }}
+                className="ai-modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  className="ai-modal-close-btn" 
+                  onClick={() => setSelectedAiImg(null)}
+                  aria-label="Close preview"
+                >
+                  <X size={20} />
+                </button>
+                <div className="ai-modal-img-container">
+                  <img src={selectedAiImg.img} alt={selectedAiImg.title} className="ai-modal-full-img" />
+                </div>
+                <div className="ai-modal-footer">
+                  <div className="ai-modal-tag-pill">{selectedAiImg.tag}</div>
+                  <h3 className="ai-modal-title">{selectedAiImg.title}</h3>
+                  <p className="ai-modal-desc">{selectedAiImg.desc}</p>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </section>
+
+
 
       {/* DEFINING THE FUTURE SECTION */}
       <section className="future-health-section">

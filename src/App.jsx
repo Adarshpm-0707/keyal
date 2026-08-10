@@ -14,6 +14,7 @@ import ReportDetail from './pages/ReportDetail';
 import TermsAndConditions from './pages/TermsAndConditions';
 import Bookings from './pages/Bookings';
 import Services from './pages/Services';
+import Waitlist from './pages/Waitlist';
 import Loader from './components/Loader';
 import WhatsAppWidget from './components/WhatsAppWidget';
 
@@ -39,6 +40,7 @@ function AppContent() {
         <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/waitlist" element={<Waitlist />} />
       </Routes>
       {!isBookingsPage && <Footer />}
     </div>
