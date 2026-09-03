@@ -23,10 +23,10 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'AI Coach', path: '/waitlist' },
+    { name: 'Science', path: '/science' },
     { name: 'Services', path: '/services' },
-    { name: 'About', path: '/about' },
     { name: 'Vision', path: '/vision' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'About', path: '/about' },
   ];
 
   return (

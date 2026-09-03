@@ -15,7 +15,7 @@ const products = [
     rating: 4.9,
     reviews: 218,
     features: [
-      "Illumina Infinium™ genotyping technology",
+      "Whole Exome Sequencing technology",
       "5-pillar DNA analysis report",
       "4-expert consultation panel (genetics, nutrition, fitness, psychology)",
       "3-month personalised meal plan — delivered daily",

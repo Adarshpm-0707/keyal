@@ -22,6 +22,7 @@ const Footer = () => {
 
   const exploreLinks = [
     { name: 'Home', path: '/' },
+    { name: 'Science', path: '/science' },
     { name: 'Services', path: '/services' },
     { name: 'About', path: '/about' },
     { name: 'Vision', path: '/vision' },
@@ -30,6 +31,7 @@ const Footer = () => {
 
   const supportLinks = [
     { name: 'Terms & Conditions', path: '/terms' },
+    { name: 'Privacy Policy', path: '/privacy' },
   ];
 
   const socialLinks = [

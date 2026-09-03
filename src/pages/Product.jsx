@@ -163,7 +163,7 @@ const Product = () => {
                     <h3 className="text-lg lg:text-xl font-black text-white mb-6 tracking-widest uppercase italic border-l-2 border-[#2ECC71] pl-4">Molecular Foundation</h3>
                     <div className="grid grid-cols-1 gap-4">
                       {[
-                        { title: "Illumina Genotyping", desc: "Advanced array technology for SNP detection with >99.9% precision and call rates.", icon: Beaker },
+                        { title: "Whole Exome Sequencing", desc: "Comprehensive high-throughput sequencing of all protein-coding regions with >99.9% precision.", icon: Beaker },
                         { title: "Biomarker Mapping", desc: "Correlation of genetic markers with advanced metabolic pathways and nutritional absorption.", icon: Activity },
                       ].map((item, i) => (
                         <div key={i} className="p-5 lg:p-8 rounded-3xl border border-[#2ECC71]/10 bg-gradient-to-br from-[#2ECC71]/5 to-transparent flex gap-6">

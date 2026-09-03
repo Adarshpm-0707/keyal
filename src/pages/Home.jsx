@@ -122,7 +122,7 @@ const Home = () => {
   ];
 
   const steps = [
-    { no: "01", title: "DNA Blueprint Analysis", desc: "A single test through NABL & CAP-certified labs using Illumina Infinium™ technology across all 5 pillars." },
+    { no: "01", title: "DNA Blueprint Analysis", desc: "A single test through NABL & CAP-certified labs using Whole Exome Sequencing technology across all 5 pillars." },
     { no: "02", title: "4-Expert Consultation Panel", desc: "Your results reviewed by a genetic counsellor, clinical dietitian, psychologist, and certified fitness trainer." },
     { no: "03", title: "Personalised Meals, Delivered Daily", desc: "DNA-matched meals delivered to your door  portioned, nutrient-aligned, and culturally appropriate." },
     { no: "04", title: "Targeted Monthly Supplements", desc: "Supplements matched to your exact absorption patterns, metabolic variants, and genetic risk markers." },
@@ -140,7 +140,7 @@ const Home = () => {
     { q: "What is DNA-based preventive healthcare?", a: "DNA-based preventive healthcare uses genetic testing to identify disease risks before symptoms appear. Kyeal is India's first company to offer this as a complete system, not just a test." },
     { q: "How much does the Kyeal program cost?", a: "Kyeal's DNA Blueprint starts at ₹30,000. Includes the DNA test, 5-pillar analysis, 4-expert panel, meal delivery, monthly supplements, and annual health review." },
     { q: "How is Kyeal different from other DNA tests?", a: "Other DNA tests give a PDF report  then stop. Kyeal delivers an ongoing system: daily meals, monthly supplements, quarterly biomarker reviews, and annual reassessment." },
-    { q: "Are the labs certified?", a: "Yes. We use Illumina Infinium™ technology through NABL & CAP-certified labs, with research collaboration with Tata Memorial Hospital and MapMyGenome." },
+    { q: "Are the labs certified?", a: "Yes. We use Whole Exome Sequencing technology through NABL & CAP-certified labs, with research collaboration with Tata Memorial Hospital and MapMyGenome." },
     { q: "Can genetics really prevent cancer?", a: "Kyeal tracks 18+ cancer-linked genetic markers. Early identification of genetic risk combined with targeted nutrition significantly improves the odds of interception." }
   ];
 
@@ -813,7 +813,7 @@ const Home = () => {
            transition={{ duration: 0.8, delay: 0.4 }}
            viewport={{ once: true }}
          >
-            <span><strong>Illumina Infinium™</strong> Gold standard genotyping technology.</span>
+            <span><strong>Whole Exome Sequencing</strong> Gold standard genomic sequencing technology.</span>
             <span><strong>NABL & CAP Certified</strong> India’s highest lab accreditation standards.</span>
             <span><strong>Tata Memorial Research</strong> Active cancer research collaboration.</span>
             <span><strong>MapMyGenome Partner</strong> ISO, HIPAA, and CAP certified genomics.</span>
@@ -878,7 +878,7 @@ const Home = () => {
           </div>
         </motion.div>
         <div className="footer-credits">
-           Powered by Illumina Infinium™ · NABL Certified Lab · MapMyGenome Partner · Tata Memorial Hospital Research
+           Powered by Whole Exome Sequencing · Tata Memorial Hospital Research
         </div>
       </section>
     </main>

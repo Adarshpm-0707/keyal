@@ -6,12 +6,14 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Vision from './pages/Vision';
+import Science from './pages/Science';
 import Contact from './pages/Contact';
 import Cart from './pages/Cart';
 import Payment from './pages/Payment';
 import Product from './pages/Product';
 import ReportDetail from './pages/ReportDetail';
 import TermsAndConditions from './pages/TermsAndConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import Bookings from './pages/Bookings';
 import Services from './pages/Services';
 import Waitlist from './pages/Waitlist';
@@ -32,12 +34,15 @@ function AppContent() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/vision" element={<Vision />} />
+        <Route path="/science" element={<Science />} />
         <Route path="/report-detail" element={<ReportDetail />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product" element={<Product />} />
         <Route path="/terms" element={<TermsAndConditions />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/services" element={<Services />} />
         <Route path="/waitlist" element={<Waitlist />} />
